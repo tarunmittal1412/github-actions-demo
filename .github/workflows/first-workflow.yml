@@ -22,4 +22,4 @@ jobs:
 
       - name: Step 3 – Read the file
         run: |
-          cat demo2.txt
+          cat demo.txt
