@@ -9,7 +9,7 @@ jobs:
   demo-job:
     runs-on: ubuntu-latest
 
-  steps:
+    steps:
       - name: Step 1 – Check OS
         run: |
           uname -a
