@@ -20,6 +20,6 @@ jobs:
           echo "This file was created in Step 2" > demo.txt
           ls -l
 
-  - name: Step 3 – Read the file
+      - name: Step 3 – Read the file
         run: |
-          cat demo.txt
+          cat demo2.txt
