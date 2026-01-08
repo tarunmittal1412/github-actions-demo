@@ -1,4 +1,4 @@
-name: Secrets Demo
+name: Multi Job Pipeline
 
 on:
   push:
@@ -6,13 +6,25 @@ on:
       - main
 
 jobs:
-  secret-job:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Use secret safely
+      - name: Build step
         run: |
-          echo "Secret is available"
-          echo "Length of secret is: ${#MY_SECRET}"
-        env:
-          MY_SECRET: ${{ secrets.MY_SECRET }}
+          echo "Building application"
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test step
+        run: |
+          echo "Running tests"
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy step
+        run: |
+          echo "Deploying application"
