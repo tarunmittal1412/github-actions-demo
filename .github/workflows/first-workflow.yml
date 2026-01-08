@@ -13,6 +13,6 @@ jobs:
       - name: Use secret safely
         run: |
           echo "Secret is available"
-          echo "Length of secret: ${#MY_SECRET}"
+          echo "Length of secret is: ${#MY_SECRET}"
         env:
           MY_SECRET: ${{ secrets.MY_SECRET }}
