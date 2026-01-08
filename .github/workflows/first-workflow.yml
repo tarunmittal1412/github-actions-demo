@@ -1,32 +1,18 @@
-name: Environment Variables Demo
+name: Secrets Demo
 
 on:
   push:
     branches:
       - main
 
-env:
-  APP_NAME: github-actions-demo
-
 jobs:
-  demo-job:
+  secret-job:
     runs-on: ubuntu-latest
 
-    env:
-      JOB_ENV: production
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Use workflow and job env
+      - name: Use secret safely
         run: |
-          echo "App Name: $APP_NAME"
-          echo "Job Environment: $JOB_ENV"
-
-      - name: Step level env
+          echo "Secret is available"
+          echo "Length of secret: ${#MY_SECRET}"
         env:
-          STEP_ENV: step-only
-        run: |
-          echo "Step Env: $STEP_ENV"
-
+          MY_SECRET: ${{ secrets.MY_SECRET }}
