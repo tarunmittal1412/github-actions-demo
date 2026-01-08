@@ -1,18 +1,32 @@
-name: Checkout Demo
+name: Environment Variables Demo
 
 on:
   push:
     branches:
       - main
 
+env:
+  APP_NAME: github-actions-demo
+
 jobs:
   demo-job:
     runs-on: ubuntu-latest
+
+    env:
+      JOB_ENV: production
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: List repository files
+      - name: Use workflow and job env
         run: |
-          ls -l
+          echo "App Name: $APP_NAME"
+          echo "Job Environment: $JOB_ENV"
+
+      - name: Step level env
+        env:
+          STEP_ENV: step-only
+        run: |
+          echo "Step Env: $STEP_ENV"
+
